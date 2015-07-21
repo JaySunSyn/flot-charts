@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="flot-chart-stacking.html">
+<link rel="import" href="flot-chart-series-pie.html">
 
 <!--
 An element providing a solution to no problem in particular.
@@ -30,12 +31,18 @@ Example:
       height: 300px;
       width: 100%;
     }
+
+    .half{
+      width: 51%;
+    }
   </style>
 
   <template>
   <h3>Stacking</h3>
     <flot-chart-stacking class="flotChart" data=[[data]]></flot-chart-stacking>
-    <flot-chart-stacking class="flotChart" data=[[data]] bars></flot-chart-stacking>
+    <flot-chart-stacking class="flotChart" data=[[data]] bar></flot-chart-stacking>
+  <h3>Pie</h3>
+    <flot-chart-series-pie class="flotChart half" data=[[dataPie]]></flot-chart-series-pie>
   </template>
 
 </dom-module>
@@ -60,9 +67,19 @@ Example:
       for (var i = 0; i <= 10; i += 1) {
         d3.push([i, parseInt(Math.random() * 30)]);
       }
-
+      
       this.data = [d1,d2,d3];
+      
+      this.dataPie = [
+                   { label: "Series1",  data: 10},
+                   { label: "Series2",  data: 30},
+                   { label: "Series3",  data: 90},
+                   { label: "Series4",  data: 70},
+                   { label: "Series5",  data: 80},
+                   { label: "Series6",  data: 110}
+                  ];
 
+      
       this.async(this.plot, 1000);
     },
 

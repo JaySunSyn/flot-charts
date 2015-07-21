@@ -14,9 +14,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script language="javascript" type="text/javascript" src="../jquery-ui/jquery-ui.min.js"></script>
 <script language="javascript" type="text/javascript" src="../flot/jquery.flot.js"></script>
 <script language="javascript" type="text/javascript" src="../flot/jquery.flot.resize.js"></script>
-<script language="javascript" type="text/javascript" src="../flot/jquery.flot.stack.js"></script>
+<script language="javascript" type="text/javascript" src="../flot/jquery.flot.pie.js"></script>
 
-<dom-module id="flot-chart-stacking">
+<dom-module id="flot-chart-series-pie">
   <style is="custom-style">
     :host {
       display: block;
@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <script>
 (function() {
   Polymer({
-    is: 'flot-chart-stacking',
+    is: 'flot-chart-series-pie',
 
     properties:{
 
@@ -46,76 +46,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         value:function(){return [];}
       },
 
-      stack:Boolean,
-      
-      bars:Boolean,
-      
-      lines:Boolean,
-
-      steps:Boolean,
-      
-      pie:Boolean,
-      
-      barWidth:{
-        type:Number, 
-        value:0.6
-      },
-      
-      showGrid:{
-        type:Boolean, 
-        value:true
+      radius:{
+        type:Number,
+        value:0.7
       },
 
-      xaxis:{
+      label:{
         type:Object,
-        value:{tickLength:0}
-      },
-
-      yaxis:{
-        type:Object,
-        value:{tickLength:0}
-      },
-
-      grid:{
-        type:Object,
-        value:{show:true}
+        value:{
+          threshold:0.1,
+          show:true,
+          radius:0.4,
+          formatter: labelFormatter
+        }
       }
+      
     },
 
     plot:function(){
 
-      var series = {
-                stack: this.stack,
-                lines: {
-                  show: this.lines,
-                  fill: true,
-                  steps: this.steps
-                },
-                bars: {
-                  show: this.bars,
-                  barWidth: this.barWidth
-                }
-              };
-      var grid  = this.grid;
-      var yaxis = this.yaxis;
-      var xaxis = this.xaxis;
+      var series =  {
+          pie: { 
+            show: true,
+            radius: this.radius,
+            label: this.label
+          }
+        };
 
-      var data = this.data;
+
       var placeholder = this.$.placeholder;
 
-      $.plot(placeholder, data, {series: series, grid:grid, xaxis:xaxis, yaxis:yaxis});
+      $.plot(placeholder, this.data, {series: series});
 
       // Make it responsive
-        $("#placeholder").resize(function () {
-          $(".message").text("Placeholder is now "
-            + $(this).width() + "x" + $(this).height()
-            + " pixels");
+      $("#placeholder").resize(function () {
+        $(".message").text("Placeholder is now "
+          + $(this).width() + "x" + $(this).height()
+          + " pixels");
         });
       
     }
   });
 })();
+
+function labelFormatter(label, series) {
+    return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+  }
 </script>
+
 
 
 

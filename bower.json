@@ -2,18 +2,20 @@
   "name": "flot-charts",
   "version": "1.0.0",
   "authors": [
-    "Anonymous <anonymous@example.com>"
+    "Jalal Fathi <jfathi.mail@gmail.com>"
   ],
-  "description": "An element providing a solution to no problem in particular.",
+  "description": "The Polymer integration of the Flot library.",
   "keywords": [
     "web-component",
     "web-components",
     "polymer",
-    "seed"
+    "flot",
+    "charts",
+    "graphs"
   ],
   "main": "flot-charts.html",
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "homepage": "https://github.com/JaySunSyn/flot-charts",
   "ignore": [
     "/.*",
     "/test/",
