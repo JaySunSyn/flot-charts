@@ -31,7 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </style>
   <template>
-    <div id="placeholder" class="flotChartPlaceholder"></div>
+    <div id="flotChartPlaceholder" class="flotChartPlaceholder"></div>
   </template>
 </dom-module>
 <script>
@@ -74,12 +74,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
 
 
-      var placeholder = this.$.placeholder;
+      var placeholder = this.$.flotChartPlaceholder;
 
       $.plot(placeholder, this.data, {series: series});
 
       // Make it responsive
-      $("#placeholder").resize(function () {
+      $("#flotChartPlaceholder").resize(function () {
         $(".message").text("Placeholder is now "
           + $(this).width() + "x" + $(this).height()
           + " pixels");
